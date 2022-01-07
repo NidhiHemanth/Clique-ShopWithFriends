@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "762437973113",
+    "project_id": "clique-31cf0",
+    "storage_bucket": "clique-31cf0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762437973113:android:279d1fc9184c8b71a7d0a8",
+        "android_client_info": {
+          "package_name": "com.bmsce.clique_shopwithfriends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762437973113-f7jtk3683tnqpjh3lq5nul0r2r0a4c2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQJJy1lfK3n0qw02sQarwucLidVal2EKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762437973113-f7jtk3683tnqpjh3lq5nul0r2r0a4c2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
