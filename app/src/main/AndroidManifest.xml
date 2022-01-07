@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CliqueShopWithFriends">
         <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".WelcomeActivity"
             android:exported="true" />
         <activity

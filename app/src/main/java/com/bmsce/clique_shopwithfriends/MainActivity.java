@@ -2,8 +2,8 @@ package com.bmsce.clique_shopwithfriends;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +12,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(getApplicationContext(),"Yep the toast was workinggg", Toast.LENGTH_SHORT).show();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+        Intent welcome_activity = new Intent(getBaseContext(), WelcomeActivity.class);
+        startActivity(welcome_activity);
+        finish();
     }
 
 }
