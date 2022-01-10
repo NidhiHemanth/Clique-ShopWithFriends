@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_home_screen.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_individual_session_screen.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_main.xml" value="0.115625" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_profile_screen.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_room_code_screen.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_sessions_screen.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_settings_screen.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/megan/Desktop/CliqueShopwithFriends/app/src/main/res/layout/activity_main.xml" value="0.1693840579710145" />
       </map>
     </option>
