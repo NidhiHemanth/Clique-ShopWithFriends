@@ -23,6 +23,42 @@
             android:name=".WelcomeActivity"
             android:exported="true" />
         <activity
+            android:name=".ProfileScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_profile_screen"
+            android:theme="@style/Theme.CliqueShopWithFriends.Fullscreen" />
+        <activity
+            android:name=".SettingsScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_settings_screen"
+            android:theme="@style/Theme.CliqueShopWithFriends.Fullscreen" />
+        <activity
+            android:name=".SessionsScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_sessions_screen"
+            android:theme="@style/Theme.CliqueShopWithFriends.Fullscreen" />
+        <activity
+            android:name=".IndividualSessionScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_individual_session_screen"
+            android:theme="@style/Theme.CliqueShopWithFriends.Fullscreen" />
+        <activity
+            android:name=".RoomCodeScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_room_code_screen"
+            android:theme="@style/Theme.CliqueShopWithFriends.Fullscreen" />
+        <activity
+            android:name=".HomeScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_home_screen"
+            android:theme="@style/Theme.CliqueShopWithFriends.Fullscreen" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity

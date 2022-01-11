@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Clique</string>
     <string name="welcome">Welcome!</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_profile_screen">ProfileScreen</string>
+    <string name="title_activity_settings_screen">SettingsScreen</string>
+    <string name="title_activity_sessions_screen">SessionsScreen</string>
+    <string name="title_activity_individual_session_screen">IndividualSessionScreen</string>
+    <string name="title_activity_room_code_screen">RoomCodeScreen</string>
 </resources>
