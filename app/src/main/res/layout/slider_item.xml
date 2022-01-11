@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/image_view"
-        android:scaleType="fitCenter"
+        android:scaleType="centerInside"
         android:contentDescription="@string/app_name"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
