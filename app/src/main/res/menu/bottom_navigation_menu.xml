@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sesh"
+        android:enabled="true"
+        android:title="Session"/>
+    <item
+        android:id="@+id/rom"
+        android:enabled="true"
+        android:title="Room"/>
+    <item
+        android:id="@+id/prof"
+        android:enabled="true"
+        android:title="Profile"/>
+</menu>
