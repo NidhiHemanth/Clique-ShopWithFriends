@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/aesthetic.xml" value="0.18796296296296297" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/circle.xml" value="0.15208333333333332" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/pfp.xml" value="0.1578125" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/rounded_corners.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/skip.xml" value="0.15208333333333332" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout-v31/activity_home_screen.xml" value="0.22192028985507245" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_home.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_home_screen.xml" value="0.1" />
@@ -19,6 +22,7 @@
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_welcome.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/aesthetic.xml" value="0.13854166666666667" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/bottom_navigation_menu.xml" value="0.11499493414387031" />
+        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/circle.xml" value="0.1359375" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/rounded_corners.xml" value="0.22192028985507245" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/menu/bottom_nav_bar.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/megan/Desktop/CliqueShopwithFriends/app/src/main/res/layout/activity_main.xml" value="0.1693840579710145" />

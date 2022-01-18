@@ -4,8 +4,8 @@
     <solid android:color="@color/white"/>
 
     <corners
-        android:bottomLeftRadius="0.5in"
-        android:bottomRightRadius="0.5in"
+        android:bottomLeftRadius="20dp"
+        android:bottomRightRadius="20dp"
         android:topLeftRadius="5in"
         android:topRightRadius="0in" />
 
