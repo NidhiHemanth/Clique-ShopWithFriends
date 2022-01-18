@@ -9,4 +9,7 @@
     <string name="title_activity_sessions_screen">SessionsScreen</string>
     <string name="title_activity_individual_session_screen">IndividualSessionScreen</string>
     <string name="title_activity_room_code_screen">RoomCodeScreen</string>
+    <string name="skip"><![CDATA[>>>]]></string>
+    <string name="get_started">Get Started</string>
+    <string name="home_screen">Home Screen</string>
 </resources>

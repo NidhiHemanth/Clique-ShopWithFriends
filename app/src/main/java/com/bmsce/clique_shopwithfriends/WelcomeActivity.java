@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -30,10 +30,6 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -43,7 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
             finish();
         }
 
-        Button skip = (Button) findViewById(R.id.skip);
+        Button skip = findViewById(R.id.skip);
         skip.setOnClickListener(v -> {
             Intent login_activity = new Intent(WelcomeActivity.this, LoginActivity.class);
             startActivity(login_activity);
