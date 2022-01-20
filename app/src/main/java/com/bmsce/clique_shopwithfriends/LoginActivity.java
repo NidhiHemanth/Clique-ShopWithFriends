@@ -47,15 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
         login = (Button) findViewById(R.id.button);
         login.setOnClickListener(v -> signIn());
-
-        Button X = (Button)(findViewById(R.id.butt));
-        X.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent welcome_activity = new Intent(getBaseContext(), HomeScreen.class);
-                startActivity(welcome_activity);
-            }
-        });
     }
 
     private void signIn() {
@@ -98,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(LoginActivity.this, "Successful Login!", Toast.LENGTH_SHORT).show();
-                        Intent home_activity = new Intent(LoginActivity.this, HomeActivity.class);
+                        Intent home_activity = new Intent(LoginActivity.this, HomeScreen.class);
                         startActivity(home_activity);
                         finish();
                     } else {
