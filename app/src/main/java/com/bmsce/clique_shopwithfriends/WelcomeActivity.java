@@ -34,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         if(user != null) {
-            Intent home_activity = new Intent(this, HomeActivity.class);
+            Intent home_activity = new Intent(this, HomeScreen.class);
             startActivity(home_activity);
             finish();
         }
