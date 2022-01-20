@@ -56,8 +56,8 @@ public class ProfileFragment extends Fragment {
         username.setText(user != null ? user.getDisplayName() : "Not Specified");
         email.setText(user != null ? user.getEmail() : "Not Specified");
 
-        Button sign_out = (Button) view.findViewById(R.id.sign_out);
-        sign_out.setOnClickListener(v -> {
+       Button sign_out = (Button) view.findViewById(R.id.sign_out);
+       sign_out.setOnClickListener(v -> {
             mAuth.signOut();
             googleSignInClient.signOut();
 
