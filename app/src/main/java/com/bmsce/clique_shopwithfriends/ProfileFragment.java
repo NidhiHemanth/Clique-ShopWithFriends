@@ -7,12 +7,9 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileFragment extends Fragment {
 
+    ImageView editProfile;
     View view;
     private FirebaseAuth mAuth;
     private GoogleSignInClient googleSignInClient;
@@ -50,14 +48,21 @@ public class ProfileFragment extends Fragment {
 
         googleSignInClient = GoogleSignIn.getClient(getActivity().getApplicationContext(), gso);
 
+        editProfile = view.findViewById(R.id.edit_profile);
+        editProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getBaseContext(), EditProfile.class);
+            startActivity(intent);
+            getActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        });
+
         TextView username = (TextView) view.findViewById(R.id.username);
         TextView email = (TextView) view.findViewById(R.id.email);
 
         username.setText(user != null ? user.getDisplayName() : "Not Specified");
         email.setText(user != null ? user.getEmail() : "Not Specified");
 
-       Button sign_out = (Button) view.findViewById(R.id.sign_out);
-       sign_out.setOnClickListener(v -> {
+        Button sign_out = view.findViewById(R.id.sign_out);
+        sign_out.setOnClickListener(v -> {
             mAuth.signOut();
             googleSignInClient.signOut();
 
@@ -66,7 +71,7 @@ public class ProfileFragment extends Fragment {
             getActivity().finish();
         });
 
-
         return view;
     }
+
 }

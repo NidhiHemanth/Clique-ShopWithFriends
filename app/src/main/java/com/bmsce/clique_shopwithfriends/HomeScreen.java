@@ -21,7 +21,6 @@ public class HomeScreen extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setBackground(null);
-        bottomNavigationView.setSelectedItemId(R.id.rom);
         bottomNavigationView.getMenu();
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -38,24 +37,17 @@ public class HomeScreen extends AppCompatActivity {
 
         loadFragment(new HomeFragment());
 
+        bottomNavigationView.setSelectedItemId(R.id.rom);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId())
             {
                 case R.id.rom :
-                    // Toast.makeText(getApplicationContext(), "Home Screen Reached!", Toast.LENGTH_SHORT).show();
-                    // getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFrag).commit();
                     loadFragment(new HomeFragment());
                     break;
                 case R.id.sesh :
-                    // Meghana = new Intent(HomeScreen.this, SessionsScreen.class);
-                    // startActivity(Meghana);
-                    // getSupportFragmentManager().beginTransaction().replace(R.id.container, seshFrag).commit();
                     loadFragment(new SessionFragment());
                     break;
                 case R.id.prof :
-                    // Meghana = new Intent(HomeScreen.this, ProfileScreen.class);
-                    // startActivity(Meghana);
-                    // getSupportFragmentManager().beginTransaction().replace(R.id.container, profFrag).commit();
                     loadFragment(new ProfileFragment());
                     break;
             }

@@ -16,14 +16,21 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 120;
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     private GoogleSignInClient googleSignInClient;
     Button login;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference DBreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,13 @@ public class LoginActivity extends AppCompatActivity {
 
         login = (Button) findViewById(R.id.button);
         login.setOnClickListener(v -> signIn());
+
+        Button butt = findViewById(R.id.buttDail);
+        butt.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, Dummy.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void signIn() {
@@ -89,6 +103,15 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(LoginActivity.this, "Successful Login!", Toast.LENGTH_SHORT).show();
+
+                        rootNode = FirebaseDatabase.getInstance();
+                        DBreference = rootNode.getReference("users");
+
+                        currentUser = mAuth.getCurrentUser();
+                        UserDefinition user = new UserDefinition(currentUser.getDisplayName().toString(), currentUser.getEmail().toString());
+
+                        DBreference.child(user.getName()).setValue(user);
+
                         Intent home_activity = new Intent(LoginActivity.this, HomeScreen.class);
                         startActivity(home_activity);
                         finish();

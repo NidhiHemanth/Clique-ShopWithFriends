@@ -36,7 +36,6 @@
         android:layout_height="75dp"
         android:layout_marginTop="192dp"
         android:text="Create Room"
-        app:layout_constraintBottom_toBottomOf="@+id/Viewbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

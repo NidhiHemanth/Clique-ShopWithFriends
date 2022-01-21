@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent">
 
@@ -47,7 +46,7 @@ android:layout_height="match_parent">
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_person_24" />
+            app:srcCompat="@drawable/ic_sentiment_satisfied_alt_black_48dp" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -60,7 +59,7 @@ android:layout_height="match_parent">
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            app:layout_constraintVertical_bias="0.209">
+            app:layout_constraintVertical_bias="0.266">
 
             <TextView
                 android:id="@+id/textView3"
@@ -69,8 +68,9 @@ android:layout_height="match_parent">
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="User Name"
-                android:textColor="#FFFFFF"
-                android:textSize="25dp" />
+                android:textColor="#000000"
+                android:textSize="23dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/username"
@@ -90,8 +90,9 @@ android:layout_height="match_parent">
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="Email"
-                android:textColor="#FFFFFF"
-                android:textSize="25dp" />
+                android:textColor="#000000"
+                android:textSize="23dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/email"
@@ -115,6 +116,17 @@ android:layout_height="match_parent">
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <ImageView
+            android:id="@+id/edit_profile"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="216dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.741"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_edit_note_black_24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
