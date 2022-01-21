@@ -14,3 +14,4 @@ public class RoomCodeScreen extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Room Screen Reached!", Toast.LENGTH_SHORT).show();
     }
 }
+

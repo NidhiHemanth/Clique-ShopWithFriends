@@ -52,20 +52,15 @@ public class LoginActivity extends AppCompatActivity {
         // Firebase Auth Instance
         mAuth = FirebaseAuth.getInstance();
 
-        login = (Button) findViewById(R.id.button);
+        login =  findViewById(R.id.button);
         login.setOnClickListener(v -> signIn());
 
-        Button butt = findViewById(R.id.buttDail);
-        butt.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, Dummy.class);
-            startActivity(intent);
-            finish();
-        });
+
     }
 
     private void signIn() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        startActivity(signInIntent, RC_SIGN_IN);
     }
 
     @Override
