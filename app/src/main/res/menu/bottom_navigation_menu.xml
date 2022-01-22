@@ -3,17 +3,17 @@
     <item
         android:id="@+id/sesh"
         android:enabled="true"
-        android:title="Session"
+        android:title=""
         android:icon="@drawable/sessiondata"
         />
     <item
         android:id="@+id/rom"
         android:enabled="true"
-        android:title="Room"
+        android:title=""
         android:icon="@drawable/house"/>
     <item
         android:id="@+id/prof"
         android:enabled="true"
-        android:title="Profile"
+        android:title=""
         android:icon="@drawable/user"/>
 </menu>

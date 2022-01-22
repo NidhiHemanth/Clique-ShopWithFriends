@@ -71,8 +71,9 @@ android:layout_height="match_parent">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nunito_bold"
                 android:text="User Name"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="23dp"
                 android:textStyle="bold" />
 
@@ -84,7 +85,8 @@ android:layout_height="match_parent">
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="20dp" />
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -93,8 +95,9 @@ android:layout_height="match_parent">
                 android:layout_centerVertical="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nunito_bold"
                 android:text="Email"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="23dp"
                 android:textStyle="bold" />
 
@@ -106,7 +109,8 @@ android:layout_height="match_parent">
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="20dp" />
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
 
         </LinearLayout>
 
@@ -116,7 +120,13 @@ android:layout_height="match_parent">
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="56dp"
+            android:shadowColor="#000000"
+            android:shadowDx="6"
+            android:shadowDy="6"
             android:text="Sign Out"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FBFBFB"
+            app:iconTint="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

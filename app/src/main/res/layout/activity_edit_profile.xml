@@ -4,6 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:shapeAppearance="@style/ShapeAppearance.CliqueShopWithFriends.MediumComponent" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +55,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="vertical">
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="#9AFFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:fadingEdge="horizontal|vertical"
+            android:fadingEdgeLength="5dp"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:requiresFadingEdge="horizontal|vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/prof_username"
@@ -159,8 +178,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="25dp"
-                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center_horizontal"
                 android:text="Save Profile" />
 

@@ -34,13 +34,35 @@
             android:id="@+id/TheTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Links from Last time"
+            android:fontFamily="cursive"
+            android:text="Sessions from the Past"
+            android:textColor="#FFFFFF"
+            android:textSize="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.123" />
+            app:layout_constraintVertical_bias="0.162" />
+
+        <LinearLayout
+            android:layout_width="246dp"
+            android:layout_height="365dp"
+            android:layout_marginTop="196dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bg"
+            app:layout_constraintVertical_bias="0.07"
+            tools:context=".ListActivity">
+
+                <ListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></ListView>
+
+        </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

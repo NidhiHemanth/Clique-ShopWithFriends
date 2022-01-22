@@ -28,12 +28,10 @@ public class HomeScreen extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         LayoutParams navParams = bottomNavigationView.getLayoutParams();
-        navParams.height = (int) (metrics.heightPixels * 0.1);
-        bottomNavigationView.setLayoutParams(navParams);
 
         FrameLayout frameL = findViewById(R.id.frame_layout);
         LayoutParams frameParams = frameL.getLayoutParams();
-        frameParams.height = metrics.heightPixels - navParams.height + 120;
+        frameParams.height = metrics.heightPixels - navParams.height - 20;
         frameL.setLayoutParams(frameParams);
         Log.d("me->", "home activity");
         loadFragment(new HomeFragment());

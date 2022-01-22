@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -55,7 +59,22 @@ public class LoginActivity extends AppCompatActivity {
         login =  findViewById(R.id.button);
         login.setOnClickListener(v -> signIn());
 
-
+        ImageView iv = findViewById(R.id.imageViewAnim);
+        Animation animUpDown;
+        animUpDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.up_down);
+        animUpDown.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.up_down);
+                anim.setAnimationListener(this);
+                iv.startAnimation(anim);
+            }
+            @Override
+            public void onAnimationRepeat(Animation arg0) { }
+            @Override
+            public void onAnimationStart(Animation arg0) { }
+        });
+        iv.startAnimation(animUpDown);
     }
 
     private void signIn() {

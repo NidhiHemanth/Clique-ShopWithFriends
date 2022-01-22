@@ -1,6 +1,8 @@
 package com.bmsce.clique_shopwithfriends;
 
 import android.Manifest;
+import android.content.ClipboardManager;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.opentok.android.BaseVideoRenderer;
 import com.opentok.android.OpentokError;
 import com.opentok.android.Publisher;
@@ -27,6 +31,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
@@ -34,14 +39,17 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
         public ToggleButton toggleAudio;
         public Subscriber subscriber;
+        public Uri uri;
         public ImageView displayImage;
+        ArrayList<String> items;
 
-        public SubscriberContainer(ToggleButton toggleAudio, Subscriber subscriber, Uri uri) {
-
+        public SubscriberContainer(ToggleButton toggleAudio, ImageView imageView, Subscriber subscriber, Uri uri) {
             this.toggleAudio = toggleAudio;
             this.subscriber = subscriber;
 
-            //TO DO 1 -> convert URI to imaeView
+            this.uri = uri;
+            this.displayImage = imageView;
+            this.items = new ArrayList<>();
         }
     }
 
@@ -168,11 +176,15 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         for (int i = 0; i < MAX_NUM_SUBSCRIBERS; i++) {
             int toggleAudioId = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
-
+            int imageViewId = getResources().getIdentifier("imageView" + (new Integer(i)).toString(),
+                    "id", this.getPackageName());
             subscribers.add(new SubscriberContainer(
                     findViewById(toggleAudioId),
+                    findViewById(imageViewId),
                     null, uri
             ));
+
+            Glide.with(RoomCodeScreen.this).load(Objects.requireNonNull(subscribers.get(i).uri).toString()).into(subscribers.get(i).displayImage);
         }
 
             publisherViewContainer = findViewById(R.id.publisherview);
@@ -210,6 +222,12 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
     @Override
     protected void onDestroy() {
+        String message = "";
+        for(int i = 0; i < subscribers.size(); i++) {
+            message = "Person " + i + " : " + subscribers.get(i).toString() + "\n";
+        }
+        sendMessage(message);
+
         disconnectSession();
 
         super.onDestroy();
@@ -284,6 +302,12 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             }
         });
         container.toggleAudio.setVisibility(View.VISIBLE);
+
+        container.displayImage.setOnClickListener(v -> {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            String temp = clipboard.getPrimaryClip().getItemAt(0).getText().toString();
+            container.items.add(temp);
+        });
     }
 
     private void removeSubscriberWithStream(Stream stream) {
@@ -334,6 +358,28 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         Log.e(TAG, message);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         this.finish();
+    }
+
+    private void sendMessage(String message)
+    {
+        // Creating new intent
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        intent.setType("text/plain");
+        intent.setPackage("com.whatsapp");
+
+        // Give your message here
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+
+        // Checking whether Whatsapp
+        // is installed or not
+        if (intent.resolveActivity(getPackageManager()) == null) {
+            Toast.makeText(this,"Please install whatsapp first.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Starting Whatsapp
+        startActivity(intent);
     }
 
 }

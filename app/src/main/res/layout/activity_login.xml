@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.275" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewAnim"
         android:layout_width="289dp"
         android:layout_height="274dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
         app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.849"
+        app:layout_constraintVertical_bias="0.809"
         app:srcCompat="@drawable/ic_pic1__1_" />
 
     <TextView
