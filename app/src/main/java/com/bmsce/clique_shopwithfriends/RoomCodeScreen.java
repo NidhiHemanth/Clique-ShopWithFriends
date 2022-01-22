@@ -78,9 +78,8 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             Log.d(TAG, "onConnected: Connected to session " + session.getSessionId());
             sessionConnected = true;
 
-            publisher = new Publisher.Builder(RoomCodeScreen.this).build();
-            publisher.setPublisherListener(publisherListener);
 
+            if (isHost){
             ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this,
                     webViewContainer);
 
@@ -100,8 +99,11 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
             Spublisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
             publisherViewContainer.addView(Spublisher.getView());
-            if (isHost) session.publish(Spublisher);
-            else session.publish(publisher);
+             session.publish(Spublisher);}
+
+            else
+            {publisher = new Publisher.Builder(RoomCodeScreen.this).build();
+                publisher.setPublisherListener(publisherListener);session.publish(publisher);}
         }
 
         @Override

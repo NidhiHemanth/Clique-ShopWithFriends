@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 public class HomeFragment extends Fragment {
 
     View view;
-    boolean isHost = false;
+
     private EditText edit;
 
     public HomeFragment() {
@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
         rg.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.host:
-                    isHost = true;
+                    RoomCodeScreen.isHost = true;
                     actv(true);
                     break;
                 case R.id.audience:
@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
             EditText token = view.findViewById(R.id.TOKEN);
             EditText session = view.findViewById(R.id.SESSION_ID);
 
-            if(isHost)
+            if(RoomCodeScreen.isHost)
                 RoomCodeScreen.website = edit.getText().toString();
 
             OpenTokConfig.TOKEN = token.getText().toString();
