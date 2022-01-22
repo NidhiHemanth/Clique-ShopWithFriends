@@ -9,12 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class HomeFragment extends Fragment {
 
@@ -34,14 +31,14 @@ public class HomeFragment extends Fragment {
         edit = view.findViewById(R.id.WEBSITE);
         actv(false);
 
-        RadioGroup rg = view.findViewById(R.id.radioGroup);
+        RadioGroup rg = view.findViewById(R.id.userType);
 
         rg.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
-                case R.id.radioButton:
+                case R.id.host:
                     actv(true);
                     break;
-                case R.id.radioButton2:
+                case R.id.audience:
                     actv(false);
                     break;
             }
@@ -52,16 +49,21 @@ public class HomeFragment extends Fragment {
 
             EditText token = view.findViewById(R.id.TOKEN);
             EditText session = view.findViewById(R.id.SESSION_ID);
-
-            RoomCodeScreen.website = edit.getText().toString();
+            String website = edit.getText().toString();
 
             OpenTokConfig.TOKEN = token.getText().toString();
             OpenTokConfig.SESSION_ID = session.getText().toString();
 
-            Intent intent = new Intent(getActivity().getBaseContext(), RoomCodeScreen.class);
-            startActivity(intent);
+            RadioGroup user = view.findViewById(R.id.userType);
+            RadioButton host = view.findViewById(R.id.host);
+            int x = user.getCheckedRadioButtonId();
+            if(x!=-1) {
+                if(host.getId()==x){ RoomCodeScreen.isHost = true; RoomCodeScreen.website = website;}
+                else RoomCodeScreen.isHost= false;
+                Intent intent = new Intent(getActivity().getBaseContext(), RoomCodeScreen.class);
+                startActivity(intent);
 
-            Log.d("me->", "intent");
+            }
 
         });
         return view;
