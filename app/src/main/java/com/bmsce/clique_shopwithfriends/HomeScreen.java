@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeScreen extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    static int offset = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,14 @@ public class HomeScreen extends AppCompatActivity {
 
         FrameLayout frameL = findViewById(R.id.frame_layout);
         LayoutParams frameParams = frameL.getLayoutParams();
-        frameParams.height = metrics.heightPixels - navParams.height - 20;
+
+        frameParams.height = metrics.heightPixels - navParams.height - offset;
         frameL.setLayoutParams(frameParams);
+
         Log.d("me->", "home activity");
         loadFragment(new HomeFragment());
         Log.d("me->", "home activity");
+
         bottomNavigationView.setSelectedItemId(R.id.rom);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId())
