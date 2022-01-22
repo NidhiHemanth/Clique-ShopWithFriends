@@ -1,9 +1,13 @@
 package com.bmsce.clique_shopwithfriends;
 
+import android.content.ContentResolver;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,10 +61,11 @@ public class ProfileFragment extends Fragment {
 
         TextView username = (TextView) view.findViewById(R.id.username);
         TextView email = (TextView) view.findViewById(R.id.email);
-
+        Uri photo = user.getPhotoUrl();
         username.setText(user != null ? user.getDisplayName() : "Not Specified");
         email.setText(user != null ? user.getEmail() : "Not Specified");
-
+        ImageView pfp = (ImageView) view.findViewById(R.id.profilepicture);
+        pfp.setImageURI(android.net.Uri.parse(photo.toString()));
         Button sign_out = view.findViewById(R.id.sign_out);
         sign_out.setOnClickListener(v -> {
             mAuth.signOut();
@@ -73,5 +78,7 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
+
 
 }
