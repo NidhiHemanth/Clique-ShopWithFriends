@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CliqueShopWithFriends">
         <activity
+            android:name=".Dummy"
+            android:exported="true" />
+        <activity
             android:name=".EditProfile"
             android:exported="true" />
         <activity
