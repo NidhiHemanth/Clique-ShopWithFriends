@@ -44,11 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        boolean hasMenuKey = ViewConfiguration.get(getApplicationContext()).hasPermanentMenuKey();
-        boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
-
-        if(!hasMenuKey && !hasBackKey)
-            HomeScreen.offset = 150;
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();

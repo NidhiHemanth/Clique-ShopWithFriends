@@ -38,7 +38,10 @@
 
     <style name="ShapeAppearance.CliqueShopWithFriends.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">20dp</item>
+       <item name="cornerSizeTopLeft">20dp </item>
+        <item name="cornerSizeTopRight">20dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>>
     </style>
 
     <style name="ShapeAppearance.CliqueShopWithFriends.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
