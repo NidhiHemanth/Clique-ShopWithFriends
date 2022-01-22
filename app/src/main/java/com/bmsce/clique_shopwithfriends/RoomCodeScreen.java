@@ -1,6 +1,7 @@
 package com.bmsce.clique_shopwithfriends;
 
 import android.Manifest;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -32,16 +34,19 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
         public ToggleButton toggleAudio;
         public Subscriber subscriber;
+        public ImageView displayImage;
 
-        public SubscriberContainer(ToggleButton toggleAudio, Subscriber subscriber) {
+        public SubscriberContainer(ToggleButton toggleAudio, Subscriber subscriber, Uri uri) {
 
             this.toggleAudio = toggleAudio;
             this.subscriber = subscriber;
+
+            //TO DO 1 -> convert URI to imaeView
         }
     }
 
 
-
+    public static Uri uri;
     public static boolean isHost = false;
     public static String website = "https://www.amazon.in/";
     private static final String TAG = RoomCodeScreen.class.getSimpleName();
@@ -77,33 +82,27 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         public void onConnected(Session session) {
             Log.d(TAG, "onConnected: Connected to session " + session.getSessionId());
             sessionConnected = true;
-
-
-            if (isHost){
-            ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this,
-                    webViewContainer);
-
-            Spublisher = new Publisher.Builder(RoomCodeScreen.this)
-                    .capturer(screenSharingCapturer)
-                    .build();
-
-            Spublisher.setPublisherListener(publisherListener);
-            Spublisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
-            Spublisher.setAudioFallbackEnabled(false);
-
             webViewContainer.setWebViewClient(new WebViewClient());
             WebSettings webSettings = webViewContainer.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webViewContainer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             webViewContainer.loadUrl(website);
 
+
+            ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this,
+                    webViewContainer);
+
+            Spublisher = new Publisher.Builder(RoomCodeScreen.this)
+                    .capturer(screenSharingCapturer)
+                    .build();
+            Spublisher.setPublisherListener(publisherListener);
+            Spublisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
+            Spublisher.setAudioFallbackEnabled(false);
             Spublisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
             publisherViewContainer.addView(Spublisher.getView());
-             session.publish(Spublisher);}
+            session.publish(Spublisher);
 
-            else
-            {publisher = new Publisher.Builder(RoomCodeScreen.this).build();
-                publisher.setPublisherListener(publisherListener);session.publish(publisher);}
+
         }
 
         @Override
@@ -169,15 +168,16 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         for (int i = 0; i < MAX_NUM_SUBSCRIBERS; i++) {
             int toggleAudioId = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
+
             subscribers.add(new SubscriberContainer(
                     findViewById(toggleAudioId),
-                    null
+                    null, uri
             ));
         }
-        if(isHost) {
+
             publisherViewContainer = findViewById(R.id.publisherview);
             webViewContainer = findViewById(R.id.webview);
-        }
+
         requestPermissions();
     }
 

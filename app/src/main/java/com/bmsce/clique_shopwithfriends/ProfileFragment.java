@@ -65,7 +65,8 @@ public class ProfileFragment extends Fragment {
         TextView username = (TextView) view.findViewById(R.id.username);
         TextView email = (TextView) view.findViewById(R.id.email);
         Uri photo = user.getPhotoUrl();
-
+        //for the icon in video call
+        RoomCodeScreen.uri = photo;
         username.setText(user != null ? user.getDisplayName() : "Not Specified");
         email.setText(user != null ? user.getEmail() : "Not Specified");
         ImageView pfp = (ImageView) view.findViewById(R.id.profilepicture);
