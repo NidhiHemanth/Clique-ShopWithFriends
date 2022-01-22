@@ -1,6 +1,7 @@
 package com.bmsce.clique_shopwithfriends;
 
 import android.Manifest;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -32,16 +34,19 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
         public ToggleButton toggleAudio;
         public Subscriber subscriber;
+        public ImageView displayImage;
 
-        public SubscriberContainer(ToggleButton toggleAudio, Subscriber subscriber) {
+        public SubscriberContainer(ToggleButton toggleAudio, Subscriber subscriber, Uri uri) {
 
             this.toggleAudio = toggleAudio;
             this.subscriber = subscriber;
+
+            //TO DO 1 -> convert URI to imaeView
         }
     }
 
 
-
+    public static Uri uri;
     public static boolean isHost = false;
     public static String website = "https://www.amazon.in/";
     private static final String TAG = RoomCodeScreen.class.getSimpleName();
@@ -163,9 +168,10 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         for (int i = 0; i < MAX_NUM_SUBSCRIBERS; i++) {
             int toggleAudioId = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
+
             subscribers.add(new SubscriberContainer(
                     findViewById(toggleAudioId),
-                    null
+                    null, uri
             ));
         }
 
