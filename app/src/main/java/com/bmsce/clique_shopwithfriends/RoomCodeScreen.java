@@ -77,33 +77,27 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         public void onConnected(Session session) {
             Log.d(TAG, "onConnected: Connected to session " + session.getSessionId());
             sessionConnected = true;
-
-
-            if (isHost){
-            ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this,
-                    webViewContainer);
-
-            Spublisher = new Publisher.Builder(RoomCodeScreen.this)
-                    .capturer(screenSharingCapturer)
-                    .build();
-
-            Spublisher.setPublisherListener(publisherListener);
-            Spublisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
-            Spublisher.setAudioFallbackEnabled(false);
-
             webViewContainer.setWebViewClient(new WebViewClient());
             WebSettings webSettings = webViewContainer.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webViewContainer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             webViewContainer.loadUrl(website);
 
+
+            ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this,
+                    webViewContainer);
+
+            Spublisher = new Publisher.Builder(RoomCodeScreen.this)
+                    .capturer(screenSharingCapturer)
+                    .build();
+            Spublisher.setPublisherListener(publisherListener);
+            Spublisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
+            Spublisher.setAudioFallbackEnabled(false);
             Spublisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
             publisherViewContainer.addView(Spublisher.getView());
-             session.publish(Spublisher);}
+            session.publish(Spublisher);
 
-            else
-            {publisher = new Publisher.Builder(RoomCodeScreen.this).build();
-                publisher.setPublisherListener(publisherListener);session.publish(publisher);}
+
         }
 
         @Override
@@ -174,10 +168,10 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
                     null
             ));
         }
-        if(isHost) {
+
             publisherViewContainer = findViewById(R.id.publisherview);
             webViewContainer = findViewById(R.id.webview);
-        }
+
         requestPermissions();
     }
 
