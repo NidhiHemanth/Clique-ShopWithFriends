@@ -47,7 +47,10 @@ android:layout_height="match_parent">
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_sentiment_satisfied_alt_black_48dp" />
+            android:background="@drawable/pfp"
+            app:srcCompat="@drawable/ic_sentiment_satisfied_alt_black_48dp"
+            android:clipToOutline="true"
+            />
 
         <LinearLayout
             android:id="@+id/linearLayout"
