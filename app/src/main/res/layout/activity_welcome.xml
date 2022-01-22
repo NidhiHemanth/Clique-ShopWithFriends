@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     tools:context=".WelcomeActivity">
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/image_slider"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_width="409dp"
+        android:layout_height="719dp"
+        android:clipToPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:sliderAnimationDuration="1000"
         app:sliderAutoCycleEnabled="false"
         app:sliderIndicatorAnimationDuration="500"
@@ -24,21 +25,22 @@
         app:sliderIndicatorSelectedColor="#FFF"
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="2"
-        app:sliderStartAutoCycle="false"/>
+        app:sliderStartAutoCycle="false">
+
+    </com.smarteist.autoimageslider.SliderView>
 
     <Button
         android:id="@+id/skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="6dp"
-        android:background="@android:color/transparent"
+        android:layout_width="71dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/next"
         android:fontFamily="@font/nunito_bold"
         android:letterSpacing="0.05"
-        android:text=">>>"
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
