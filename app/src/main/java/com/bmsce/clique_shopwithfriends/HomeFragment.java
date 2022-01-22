@@ -27,15 +27,17 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         Log.d("me->", "home fragment");
 
-        EditText token = view.findViewById(R.id.TOKEN);
-        EditText session = view.findViewById(R.id.SESSION_ID);
-        OpenTokConfig.TOKEN = token.getText().toString();
-        OpenTokConfig.SESSION_ID = session.getText().toString();
         Button room = view.findViewById(R.id.Enter);
         room.setOnClickListener(v -> {
+
+            EditText token = view.findViewById(R.id.TOKEN);
+            EditText session = view.findViewById(R.id.SESSION_ID);
+            OpenTokConfig.TOKEN = token.getText().toString();
+            OpenTokConfig.SESSION_ID = session.getText().toString();
             Intent intent = new Intent(getActivity().getBaseContext(), RoomCodeScreen.class);
             startActivity(intent);
             Log.d("me->", "intent");
+
         });
         return view;
     }
