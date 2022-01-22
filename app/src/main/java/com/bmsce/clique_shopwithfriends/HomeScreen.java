@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,7 +19,7 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
+        Log.d("me->", "home activity");
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu();
@@ -34,9 +35,9 @@ public class HomeScreen extends AppCompatActivity {
         LayoutParams frameParams = frameL.getLayoutParams();
         frameParams.height = metrics.heightPixels - navParams.height + 120;
         frameL.setLayoutParams(frameParams);
-
+        Log.d("me->", "home activity");
         loadFragment(new HomeFragment());
-
+        Log.d("me->", "home activity");
         bottomNavigationView.setSelectedItemId(R.id.rom);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId())
