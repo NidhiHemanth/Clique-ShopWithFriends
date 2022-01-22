@@ -42,7 +42,7 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
 
 
-
+    public static boolean isHost = false;
     public static String website = "https://www.amazon.in/";
     private static final String TAG = RoomCodeScreen.class.getSimpleName();
     private static final int PERMISSIONS_REQUEST_CODE = 124;
@@ -100,7 +100,8 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
             Spublisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
             publisherViewContainer.addView(Spublisher.getView());
-            session.publish(publisher);
+            if (isHost) session.publish(Spublisher);
+            else session.publish(publisher);
         }
 
         @Override
@@ -140,7 +141,7 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_code_screen);
-        Log.d("me->", "onCreate");
+
         if(!OpenTokConfig.isValid()) {
             finishWithMessage("Invalid OpenTokConfig. " + OpenTokConfig.getDescription());
             return;
@@ -171,10 +172,10 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
                     null
             ));
         }
-
-        publisherViewContainer = findViewById(R.id.publisherview);
-        webViewContainer = findViewById(R.id.webview);
-
+        if(isHost) {
+            publisherViewContainer = findViewById(R.id.publisherview);
+            webViewContainer = findViewById(R.id.webview);
+        }
         requestPermissions();
     }
 
