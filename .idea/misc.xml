@@ -3,16 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_home_screen.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_login.xml" value="0.12083333333333333" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_main.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_room_code_screen.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_splash_screen.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_welcome.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/fragment_home.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/fragment_profile.xml" value="0.17760416666666667" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/fragment_session.xml" value="0.17769671704012507" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.17760416666666667" />
         <entry key="..\:/Users/megan/Desktop/CliqueShopwithFriends/app/src/main/res/layout/activity_main.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/drawable/aesthetic.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_baseline_open_in_new_24.xml" value="0.278125" />
@@ -20,6 +10,7 @@
         <entry key="app/src/main/res/drawable/ic_close_black_24dp.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_pic1__1_.xml" value="0.15104166666666666" />
+        <entry key="app/src/main/res/drawable/ic_sentiment_satisfied_alt_black_48dp.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/pfp.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/skip.xml" value="0.278125" />
         <entry key="app/src/main/res/layout-v31/activity_home_screen.xml" value="0.1" />

@@ -17,11 +17,14 @@ import android.content.Intent;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
 
@@ -62,10 +65,13 @@ public class ProfileFragment extends Fragment {
         TextView username = (TextView) view.findViewById(R.id.username);
         TextView email = (TextView) view.findViewById(R.id.email);
         Uri photo = user.getPhotoUrl();
+
         username.setText(user != null ? user.getDisplayName() : "Not Specified");
         email.setText(user != null ? user.getEmail() : "Not Specified");
         ImageView pfp = (ImageView) view.findViewById(R.id.profilepicture);
-        pfp.setImageURI(android.net.Uri.parse(photo.toString()));
+        // pfp.setImageURI(android.net.Uri.parse(photo.toString()));
+        Glide.with(getActivity()).load(Objects.requireNonNull(photo).toString()).into(pfp);
+
         Button sign_out = view.findViewById(R.id.sign_out);
         sign_out.setOnClickListener(v -> {
             mAuth.signOut();
