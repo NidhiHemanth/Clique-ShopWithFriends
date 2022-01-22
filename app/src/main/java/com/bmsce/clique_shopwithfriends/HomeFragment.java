@@ -32,8 +32,10 @@ public class HomeFragment extends Fragment {
 
             EditText token = view.findViewById(R.id.TOKEN);
             EditText session = view.findViewById(R.id.SESSION_ID);
+            EditText website = view.findViewById(R.id.WEBSITE);
             OpenTokConfig.TOKEN = token.getText().toString();
             OpenTokConfig.SESSION_ID = session.getText().toString();
+            RoomCodeScreen.website = website.getText().toString();
             Intent intent = new Intent(getActivity().getBaseContext(), RoomCodeScreen.class);
             startActivity(intent);
             Log.d("me->", "intent");
