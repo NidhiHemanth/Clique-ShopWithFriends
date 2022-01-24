@@ -36,7 +36,6 @@ import java.util.Objects;
 public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
     static class SubscriberContainer {
-
         public ToggleButton toggleAudio;
         public Subscriber subscriber;
         public Uri uri;
@@ -131,8 +130,6 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
                 publisher.setPublisherListener(publisherListener);
                 publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
 
-
-
                 session.publish(publisher);
             }
         }
@@ -179,8 +176,6 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             return;
         }
 
-
-
         final ToggleButton toggleAudio = findViewById(R.id.toggleAudio);
         toggleAudio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -196,22 +191,16 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             }
         });
 
-
-
         subscribers = new ArrayList<>();
         for (int i = 0; i < MAX_NUM_SUBSCRIBERS; i++) {
             int toggleAudioId = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
             int imageViewId = getResources().getIdentifier("imageView" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
-           Glide.with(RoomCodeScreen.this).load(Objects.requireNonNull(subscribers.get(i).uri).toString())
-                 .into(subscribers.get(i).displayImage);
             subscribers.add(new SubscriberContainer(
                     findViewById(toggleAudioId),
                     findViewById(imageViewId),
                     null, uri));
-
-
 
         }
         webViewContainer = findViewById(R.id.webview);
@@ -337,8 +326,6 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         container.toggleAudio.setVisibility(View.INVISIBLE);
         container.displayImage.setVisibility(View.INVISIBLE);
         container.subscriber = null;
-
-;
     }
 
     private void disconnectSession() {
