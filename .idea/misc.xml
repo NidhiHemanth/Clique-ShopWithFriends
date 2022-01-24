@@ -19,7 +19,10 @@
         <entry key="app/src/main/res/drawable/ic_pic1__1_.xml" value="0.15104166666666666" />
         <entry key="app/src/main/res/drawable/ic_sentiment_satisfied_alt_black_48dp.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/pfp.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/rounded_bg_linear.xml" value="0.22407407407407406" />
         <entry key="app/src/main/res/drawable/skip.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/style_provider.xml" value="0.22407407407407406" />
+        <entry key="app/src/main/res/drawable/style_subscriber.xml" value="0.278125" />
         <entry key="app/src/main/res/layout-v31/activity_home_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_dummy.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.26197916666666665" />

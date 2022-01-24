@@ -10,8 +10,9 @@
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/image_slider"
-        android:layout_width="409dp"
-        android:layout_height="719dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:clipToPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
