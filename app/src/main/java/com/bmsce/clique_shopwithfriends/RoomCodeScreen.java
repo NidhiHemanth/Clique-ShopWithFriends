@@ -59,8 +59,7 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
     private static final String TAG = "tag->";
     private static final int PERMISSIONS_REQUEST_CODE = 124;
     private Session session;
-    private RelativeLayout publisherViewContainer;
-    private WebView webViewContainer;
+    WebView webViewContainer;
     private final int MAX_NUM_SUBSCRIBERS = 4;
     private Publisher publisher;
     private List<SubscriberContainer> subscribers;
@@ -99,37 +98,31 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
             if(isHost)
             {
-                Log.d(TAG, "onConnected: hmm 1");
-                ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this, webViewContainer);
-                Log.d(TAG, "onConnected: hmm 2");
-                publisher = new Publisher.Builder(RoomCodeScreen.this)
-                       // .capturer(screenSharingCapturer)
-                        .build();
-                Log.d(TAG, "onConnected: hmm 3");
-
-                publisher.setPublisherListener(publisherListener);
-                Log.d(TAG, "onConnected: hmm 4");
-                publisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
                 Log.d(TAG, "onConnected: hmm 5");
-                publisher.setAudioFallbackEnabled(false);
+                ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this, webViewContainer);
                 Log.d(TAG, "onConnected: hmm 6");
-                /*
-                webViewContainer.setWebViewClient(new WebViewClient());
+                publisher = new Publisher.Builder(RoomCodeScreen.this)
+                        .capturer(screenSharingCapturer)
+                        .build();
                 Log.d(TAG, "onConnected: hmm 7");
-                WebSettings webSettings = webViewContainer.getSettings();
+                publisher.setPublisherListener(publisherListener);
                 Log.d(TAG, "onConnected: hmm 8");
-                webSettings.setJavaScriptEnabled(true);
+                publisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
                 Log.d(TAG, "onConnected: hmm 9");
-                webViewContainer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+                publisher.setAudioFallbackEnabled(false);
                 Log.d(TAG, "onConnected: hmm 10");
+                webViewContainer.setWebViewClient(new WebViewClient());
+                Log.d(TAG, "onConnected: hmm 1");
+                WebSettings webSettings = webViewContainer.getSettings();
+                Log.d(TAG, "onConnected: hmm 2");
+                webSettings.setJavaScriptEnabled(true);
+                Log.d(TAG, "onConnected: hmm 3");
+                webViewContainer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+                Log.d(TAG, "onConnected: hmm 4");
                 webViewContainer.loadUrl(website);
-                Log.d(TAG, "onConnected: hmm 11");
-                */
 
                 publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
-                Log.d(TAG, "onConnected: hmm 12");
-                publisherViewContainer.addView(publisher.getView());
-                Log.d(TAG, "onConnected: hmm 13");
+                Log.d(TAG, "onConnected: hmm 11");
                 session.publish(publisher);
 
             }
@@ -138,7 +131,7 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
                 publisher.setPublisherListener(publisherListener);
                 publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
 
-                publisherViewContainer.addView(publisher.getView());
+
 
                 session.publish(publisher);
             }
@@ -186,7 +179,6 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             return;
         }
 
-        publisherViewContainer = findViewById(R.id.publisherview);
 
 
         final ToggleButton toggleAudio = findViewById(R.id.toggleAudio);
@@ -220,7 +212,7 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
                     null, uri));
 
         }
-
+        webViewContainer = findViewById(R.id.webview);
         requestPermissions();
     }
 
@@ -353,7 +345,6 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         }
 
         if (publisher != null) {
-            publisherViewContainer.removeView(publisher.getView());
             session.unpublish(publisher);
             publisher = null;
         }
