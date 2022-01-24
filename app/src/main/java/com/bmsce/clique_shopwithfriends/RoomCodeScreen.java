@@ -62,7 +62,7 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
     WebView webViewContainer;
     private final int MAX_NUM_SUBSCRIBERS = 4;
     private Publisher publisher;
-    private List<SubscriberContainer> subscribers;
+    List<SubscriberContainer> subscribers;
     private boolean sessionConnected = false;
 
     private PublisherKit.PublisherListener publisherListener = new PublisherKit.PublisherListener() {
@@ -204,12 +204,14 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
                     "id", this.getPackageName());
             int imageViewId = getResources().getIdentifier("imageView" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
-            //Glide.with(RoomCodeScreen.this).load(Objects.requireNonNull(subscribers.get(i).uri).toString())
-              //    .into(subscribers.get(i).displayImage);
+           Glide.with(RoomCodeScreen.this).load(Objects.requireNonNull(subscribers.get(i).uri).toString())
+                 .into(subscribers.get(i).displayImage);
             subscribers.add(new SubscriberContainer(
                     findViewById(toggleAudioId),
                     findViewById(imageViewId),
                     null, uri));
+
+
 
         }
         webViewContainer = findViewById(R.id.webview);
@@ -317,6 +319,12 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             }
         });
         container.toggleAudio.setVisibility(View.VISIBLE);
+
+        container.displayImage.setOnClickListener(v -> {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            String temp = clipboard.getPrimaryClip().getItemAt(0).getText().toString();
+            container.items.add(temp);
+        });
     }
 
     private void removeSubscriberWithStream(Stream stream) {
@@ -325,6 +333,10 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         if (container == null) {
             return;
         }
+        container.toggleAudio.setOnCheckedChangeListener(null);
+        container.toggleAudio.setVisibility(View.INVISIBLE);
+        container.displayImage.setVisibility(View.INVISIBLE);
+        container.subscriber = null;
 
 ;
     }
