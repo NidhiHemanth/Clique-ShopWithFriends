@@ -13,10 +13,10 @@ public class OpenTokConfig {
     public static final String API_KEY = "47434391";
         //14cda0eaf7b993b14a74fe26f7faf5203038c33c
     // Replace with a generated Session ID
-    public static String SESSION_ID = "2_MX40NzQzNDM5MX5-MTY0MjgwMjY1MDQ5MX5QWnVMRm0vSzlMYkxaOWtmUmFqU3ZrYkV-fg";
+    public static String SESSION_ID = null;
 
     // Replace with a generated token (from the dashboard or using an OpenTok server SDK)
-    public static String TOKEN = "T1==cGFydG5lcl9pZD00NzQzNDM5MSZzaWc9MmEwMmMyYmU5YzQ2OWFjYWMyYzU2YzVkNzc3NTYzMmM4NWE4NmFkZTpzZXNzaW9uX2lkPTJfTVg0ME56UXpORE01TVg1LU1UWTBNamd3TWpZMU1EUTVNWDVRV25WTVJtMHZTemxNWWt4YU9XdG1VbUZxVTNacllrVi1mZyZjcmVhdGVfdGltZT0xNjQyODAyNjg5Jm5vbmNlPTAuMDYzODk1MzAxMjk5NzQ0OTcmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTY0MjgwNjI4OSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+    public static String TOKEN = null;
 
     public static boolean isValid() {
         if (TextUtils.isEmpty(OpenTokConfig.API_KEY)

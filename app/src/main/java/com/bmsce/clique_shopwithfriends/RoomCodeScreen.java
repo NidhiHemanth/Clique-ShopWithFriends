@@ -53,14 +53,12 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         }
     }
 
-
     public static Uri uri;
     public static boolean isHost = false;
     public static String website = "https://www.amazon.in/";
-    private static final String TAG = RoomCodeScreen.class.getSimpleName();
+    private static final String TAG = "tag->";
     private static final int PERMISSIONS_REQUEST_CODE = 124;
     private Session session;
-    private Publisher Spublisher ;
     private RelativeLayout publisherViewContainer;
     private WebView webViewContainer;
     private final int MAX_NUM_SUBSCRIBERS = 4;
@@ -85,32 +83,65 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         }
     };
 
+
     private Session.SessionListener sessionListener = new Session.SessionListener() {
+        //called once session is connected to
         @Override
         public void onConnected(Session session) {
             Log.d(TAG, "onConnected: Connected to session " + session.getSessionId());
             sessionConnected = true;
-            webViewContainer.setWebViewClient(new WebViewClient());
-            WebSettings webSettings = webViewContainer.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-            webViewContainer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-            webViewContainer.loadUrl(website);
 
+            //Publishing a stream means that the audio and video is published to the session
+            //Once you have connected to a session, you can publish a stream that other clients
+            // connected to the session can view.
+            //For audio -> both host and audience must publish the stream
+            //for screenshare, only host must publish and audience must only subscribe
 
-            ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this,
-                    webViewContainer);
+            if(isHost)
+            {
+                Log.d(TAG, "onConnected: hmm 1");
+                ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this, webViewContainer);
+                Log.d(TAG, "onConnected: hmm 2");
+                publisher = new Publisher.Builder(RoomCodeScreen.this)
+                       // .capturer(screenSharingCapturer)
+                        .build();
+                Log.d(TAG, "onConnected: hmm 3");
 
-            Spublisher = new Publisher.Builder(RoomCodeScreen.this)
-                    .capturer(screenSharingCapturer)
-                    .build();
-            Spublisher.setPublisherListener(publisherListener);
-            Spublisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
-            Spublisher.setAudioFallbackEnabled(false);
-            Spublisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
-            publisherViewContainer.addView(Spublisher.getView());
-            session.publish(Spublisher);
+                publisher.setPublisherListener(publisherListener);
+                Log.d(TAG, "onConnected: hmm 4");
+                publisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
+                Log.d(TAG, "onConnected: hmm 5");
+                publisher.setAudioFallbackEnabled(false);
+                Log.d(TAG, "onConnected: hmm 6");
+                /*
+                webViewContainer.setWebViewClient(new WebViewClient());
+                Log.d(TAG, "onConnected: hmm 7");
+                WebSettings webSettings = webViewContainer.getSettings();
+                Log.d(TAG, "onConnected: hmm 8");
+                webSettings.setJavaScriptEnabled(true);
+                Log.d(TAG, "onConnected: hmm 9");
+                webViewContainer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+                Log.d(TAG, "onConnected: hmm 10");
+                webViewContainer.loadUrl(website);
+                Log.d(TAG, "onConnected: hmm 11");
+                */
 
+                publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+                Log.d(TAG, "onConnected: hmm 12");
+                publisherViewContainer.addView(publisher.getView());
+                Log.d(TAG, "onConnected: hmm 13");
+                session.publish(publisher);
 
+            }
+            else{
+                publisher = new Publisher.Builder(RoomCodeScreen.this).build();
+                publisher.setPublisherListener(publisherListener);
+                publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+
+                publisherViewContainer.addView(publisher.getView());
+
+                session.publish(publisher);
+            }
         }
 
         @Override
@@ -125,12 +156,12 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             finishWithMessage("Session error: " + opentokError.getMessage());
         }
 
-
         @Override
         public void onStreamReceived(Session session, Stream stream) {
-            Log.d(TAG, "onStreamReceived: New stream " + stream.getStreamId()
-                    + " in session " + session.getSessionId());
+            Log.d(TAG, "onStreamReceived: New stream " + stream.getStreamId() + " in session " + session.getSessionId());
 
+            Log.d(TAG, "onStreamReceived: hmm 15");
+            //subscribes to the streams already present in the sessions which it connects to
             final Subscriber subscriber = new Subscriber.Builder(RoomCodeScreen.this, stream).build();
             session.subscribe(subscriber);
             addSubscriber(subscriber);
@@ -138,12 +169,10 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
         @Override
         public void onStreamDropped(Session session, Stream stream) {
-            Log.d(TAG, "onStreamDropped: Stream " + stream.getStreamId() + " dropped from session " +
-                    session.getSessionId());
+            Log.d(TAG, "onStreamDropped: Stream " + stream.getStreamId() + " dropped from session " + session.getSessionId());
 
             removeSubscriberWithStream(stream);
         }
-
     };
 
     @Override
@@ -151,10 +180,14 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_code_screen);
 
+        //goes to openTokConfig.java and checks if there is a sessionID and token provided or not
         if(!OpenTokConfig.isValid()) {
             finishWithMessage("Invalid OpenTokConfig. " + OpenTokConfig.getDescription());
             return;
         }
+
+        publisherViewContainer = findViewById(R.id.publisherview);
+
 
         final ToggleButton toggleAudio = findViewById(R.id.toggleAudio);
         toggleAudio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -172,23 +205,21 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         });
 
 
+
         subscribers = new ArrayList<>();
         for (int i = 0; i < MAX_NUM_SUBSCRIBERS; i++) {
             int toggleAudioId = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
             int imageViewId = getResources().getIdentifier("imageView" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
+            //Glide.with(RoomCodeScreen.this).load(Objects.requireNonNull(subscribers.get(i).uri).toString())
+              //    .into(subscribers.get(i).displayImage);
             subscribers.add(new SubscriberContainer(
                     findViewById(toggleAudioId),
                     findViewById(imageViewId),
-                    null, uri
-            ));
+                    null, uri));
 
-            Glide.with(RoomCodeScreen.this).load(Objects.requireNonNull(subscribers.get(i).uri).toString()).into(subscribers.get(i).displayImage);
         }
-
-            publisherViewContainer = findViewById(R.id.publisherview);
-            webViewContainer = findViewById(R.id.webview);
 
         requestPermissions();
     }
@@ -203,7 +234,6 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
         session.onResume();
     }
-
 
     @Override
     protected void onPause() {
@@ -222,17 +252,10 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
     @Override
     protected void onDestroy() {
-        String message = "";
-        for(int i = 0; i < subscribers.size(); i++) {
-            message = "Person " + i + " : " + subscribers.get(i).toString() + "\n";
-        }
-        sendMessage(message);
-
         disconnectSession();
 
         super.onDestroy();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -251,20 +274,20 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         finishWithMessage("onPermissionsDenied: " + requestCode + ": " + perms);
     }
 
-
     @AfterPermissionGranted(PERMISSIONS_REQUEST_CODE)
     private void requestPermissions() {
         String[] perms = {Manifest.permission.INTERNET, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
 
         if (EasyPermissions.hasPermissions(this, perms)) {
+            //Joining session if permissions are given
             session = new Session.Builder(this, OpenTokConfig.API_KEY, OpenTokConfig.SESSION_ID).build();
             session.setSessionListener(sessionListener);
             session.connect(OpenTokConfig.TOKEN);
         } else {
+            //request permissions if not given
             EasyPermissions.requestPermissions(this, getString(R.string.rationale_video_app), PERMISSIONS_REQUEST_CODE, perms);
         }
     }
-
 
     private SubscriberContainer findFirstEmptyContainer(Subscriber subscriber) {
         for (SubscriberContainer subscriberContainer : subscribers) {
@@ -302,12 +325,6 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             }
         });
         container.toggleAudio.setVisibility(View.VISIBLE);
-
-        container.displayImage.setOnClickListener(v -> {
-            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            String temp = clipboard.getPrimaryClip().getItemAt(0).getText().toString();
-            container.items.add(temp);
-        });
     }
 
     private void removeSubscriberWithStream(Stream stream) {
@@ -317,13 +334,8 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             return;
         }
 
-
-        container.toggleAudio.setOnCheckedChangeListener(null);
-        container.toggleAudio.setVisibility(View.INVISIBLE);
-        container.subscriber = null;
+;
     }
-
-
 
     private void disconnectSession() {
         if (session == null || !sessionConnected) {
@@ -340,13 +352,8 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             }
         }
 
-        if (Spublisher != null) {
-            publisherViewContainer.removeView(Spublisher.getView());
-            session.unpublish(Spublisher);
-            Spublisher = null;
-        }
-
         if (publisher != null) {
+            publisherViewContainer.removeView(publisher.getView());
             session.unpublish(publisher);
             publisher = null;
         }
@@ -359,27 +366,4 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         this.finish();
     }
-
-    private void sendMessage(String message)
-    {
-        // Creating new intent
-        Intent intent = new Intent(Intent.ACTION_SEND);
-
-        intent.setType("text/plain");
-        intent.setPackage("com.whatsapp");
-
-        // Give your message here
-        intent.putExtra(Intent.EXTRA_TEXT, message);
-
-        // Checking whether Whatsapp
-        // is installed or not
-        if (intent.resolveActivity(getPackageManager()) == null) {
-            Toast.makeText(this,"Please install whatsapp first.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Starting Whatsapp
-        startActivity(intent);
-    }
-
 }
