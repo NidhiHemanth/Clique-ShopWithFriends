@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
         <!-- Customize your theme here. -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.CliqueShopWithFriends.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.CliqueShopWithFriends.MediumComponent</item>
@@ -48,5 +49,6 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">4dp</item>
     </style>
+
 
 </resources>
