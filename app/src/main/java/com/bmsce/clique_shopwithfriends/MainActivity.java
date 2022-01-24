@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-            askPermission();
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+//            askPermission();
+//        }
 
         Intent welcome_activity = new Intent(getBaseContext(), WelcomeActivity.class);
         startActivity(welcome_activity);

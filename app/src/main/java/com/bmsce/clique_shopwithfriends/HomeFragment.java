@@ -72,6 +72,11 @@ public class HomeFragment extends Fragment {
             OpenTokConfig.TOKEN = token.getText().toString();
             OpenTokConfig.SESSION_ID = session.getText().toString();
 
+            mEditor.putString(getString(R.string.session_token), token.getText().toString());
+            mEditor.commit();
+            mEditor.putString(getString(R.string.session_id), session.getText().toString());
+            mEditor.commit();
+
             Intent intent = new Intent(getActivity().getBaseContext(), RoomCodeScreen.class);
             startActivity(intent);
 

@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -36,16 +37,17 @@ import java.util.Objects;
 public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
     static class SubscriberContainer {
+        public LinearLayout container;
         public ToggleButton toggleAudio;
         public Subscriber subscriber;
         public Uri uri;
         public ImageView displayImage;
         ArrayList<String> items;
 
-        public SubscriberContainer(ToggleButton toggleAudio, ImageView imageView, Subscriber subscriber, Uri uri) {
+        public SubscriberContainer(LinearLayout container, ToggleButton toggleAudio, ImageView imageView, Subscriber subscriber, Uri uri) {
             this.toggleAudio = toggleAudio;
             this.subscriber = subscriber;
-
+            this.container = container;
             this.uri = uri;
             this.displayImage = imageView;
             this.items = new ArrayList<>();
@@ -193,11 +195,14 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
 
         subscribers = new ArrayList<>();
         for (int i = 0; i < MAX_NUM_SUBSCRIBERS; i++) {
+            int containerId = getResources().getIdentifier("subscriberview" + (new Integer(i)).toString(),
+                    "id", this.getPackageName());
             int toggleAudioId = getResources().getIdentifier("toggleAudioSubscriber" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
             int imageViewId = getResources().getIdentifier("imageView" + (new Integer(i)).toString(),
                     "id", this.getPackageName());
             subscribers.add(new SubscriberContainer(
+                    findViewById(containerId),
                     findViewById(toggleAudioId),
                     findViewById(imageViewId),
                     null, uri));
@@ -307,12 +312,17 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
                 subscriber.setSubscribeToAudio(false);
             }
         });
+
+        container.container.setVisibility(View.VISIBLE);
         container.toggleAudio.setVisibility(View.VISIBLE);
+        container.displayImage.setVisibility(View.VISIBLE);
 
         container.displayImage.setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
             String temp = clipboard.getPrimaryClip().getItemAt(0).getText().toString();
             container.items.add(temp);
+
+            Toast.makeText(getApplicationContext(), container.items.toString(), Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -322,8 +332,10 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         if (container == null) {
             return;
         }
+        container.container.setVisibility(View.INVISIBLE);
         container.toggleAudio.setOnCheckedChangeListener(null);
         container.toggleAudio.setVisibility(View.INVISIBLE);
+        container.displayImage.setOnClickListener(null);
         container.displayImage.setVisibility(View.INVISIBLE);
         container.subscriber = null;
     }
@@ -334,6 +346,11 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         }
 
         sessionConnected = false;
+
+        String message = "";
+        for(int i = 0; i < subscribers.size(); i++) {
+            message += "Person " + i + " : " + subscribers.get(i).items.toString() + "\n";
+        }
 
         if (subscribers.size() > 0) {
             for (SubscriberContainer subscriberContainer : subscribers) {
@@ -348,6 +365,8 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             publisher = null;
         }
 
+        sendMessage(message);
+
         session.disconnect();
     }
 
@@ -355,5 +374,27 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         Log.e(TAG, message);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         this.finish();
+    }
+
+    private void sendMessage(String message)
+    {
+        // Creating new intent
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        intent.setType("text/plain");
+        intent.setPackage("com.whatsapp");
+
+        // Give your message here
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+
+        // Checking whether Whatsapp
+        // is installed or not
+        if (intent.resolveActivity(getPackageManager()) == null) {
+            Toast.makeText(this,"Please install whatsapp first.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Starting Whatsapp
+        startActivity(intent);
     }
 }
