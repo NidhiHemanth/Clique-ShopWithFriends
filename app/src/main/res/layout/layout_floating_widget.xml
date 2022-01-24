@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/root_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <!-- this is the collapsed layout -->
+        <RelativeLayout
+            android:id="@+id/layoutCollapsed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_bg"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/collapsed_iv"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:padding="10dp"
+                android:src="@drawable/clique_logo" />
+
+            <!--   Close button to close Floating Widget View  -->
+            <ImageView
+                android:id="@+id/close_floating_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/circle_shape"
+                android:src="@drawable/ic_close_white_24dp"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+        <!-- this is the expanded layout -->
+        <LinearLayout
+            android:id="@+id/expanded_container"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
+
+                <LinearLayout
+                    android:id="@+id/subscriberview0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".5"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/imageView0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:foregroundGravity="clip_horizontal|center"
+                        android:src="@drawable/ic_account_circle_black_48dp"
+                        android:visibility="visible" />
+
+                    <ToggleButton
+                        android:id="@+id/toggleAudioSubscriber0"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="false"
+                        android:layout_centerVertical="false"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/style_subscriber"
+                        android:checked="true"
+                        android:textOff=""
+                        android:textOn=""
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/subscriberview1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".5"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:foregroundGravity="clip_horizontal|center"
+                        android:src="@drawable/ic_account_circle_black_48dp"
+                        android:visibility="visible" />
+
+                    <ToggleButton
+                        android:id="@+id/toggleAudioSubscriber1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="false"
+                        android:layout_centerVertical="false"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/style_subscriber"
+                        android:checked="true"
+                        android:text=""
+                        android:textOff=""
+                        android:textOn=""
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/subscriberview3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".5"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:foregroundGravity="clip_horizontal|center"
+                        android:src="@drawable/ic_account_circle_black_48dp"
+                        android:visibility="visible" />
+
+                    <ToggleButton
+                        android:id="@+id/toggleAudioSubscriber3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="false"
+                        android:layout_centerVertical="false"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/style_subscriber"
+                        android:checked="true"
+                        android:text=""
+                        android:textOff=""
+                        android:textOn=""
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/subscriberview2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".5"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:foregroundGravity="clip_horizontal|center"
+                        android:src="@drawable/ic_account_circle_black_48dp"
+                        android:visibility="visible" />
+
+                    <ToggleButton
+                        android:id="@+id/toggleAudioSubscriber2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="false"
+                        android:layout_centerVertical="false"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/style_subscriber"
+                        android:checked="true"
+                        android:text=""
+                        android:textOff=""
+                        android:textOn=""
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--  ImageView to Close Expanded View  -->
+            <ImageView
+                android:id="@+id/close_expanded_view"
+                android:layout_width="123dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_close_black_24dp" />
+
+            <!--  ImageView to Open Activity  -->
+
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>
