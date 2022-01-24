@@ -1,11 +1,13 @@
 package com.bmsce.clique_shopwithfriends;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +22,9 @@ import android.widget.Toast;
 public class HomeFragment extends Fragment {
 
     private static final int SYSTEM_ALERT_WINDOW_PERMISSION = 2084;
+    static SharedPreferences mSharedPreferences;
+    static SharedPreferences.Editor mEditor;
+    static EditText token, session;
     View view;
 
     private EditText edit;
@@ -35,6 +40,9 @@ public class HomeFragment extends Fragment {
         Log.d("me->", "home fragment");
 
         edit = view.findViewById(R.id.WEBSITE);
+        token = view.findViewById(R.id.TOKEN);
+        session = view.findViewById(R.id.SESSION_ID);
+
         actv(false);
 
         RadioGroup rg = view.findViewById(R.id.userType);
@@ -51,12 +59,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mEditor = mSharedPreferences.edit();
+
+        checkSharedPreferences();
+
         Button room = view.findViewById(R.id.Enter);
         room.setOnClickListener(v -> {
-
-            EditText token = view.findViewById(R.id.TOKEN);
-            EditText session = view.findViewById(R.id.SESSION_ID);
-
             if(RoomCodeScreen.isHost)
                 RoomCodeScreen.website = edit.getText().toString();
 
@@ -78,7 +87,6 @@ public class HomeFragment extends Fragment {
 //                askPermission();
 //                Toast.makeText(getActivity(), "You need System Alert Window Permission to do this", Toast.LENGTH_SHORT).show();
 //            }
-
         });
 
         return view;
@@ -96,4 +104,14 @@ public class HomeFragment extends Fragment {
             edit.requestFocus();
         }
     }
+
+    private void checkSharedPreferences() {
+        String s_token = mSharedPreferences.getString(getString(R.string.session_token), "");
+        String s_id = mSharedPreferences.getString(getString(R.string.session_id), "");
+
+        token.setText(s_token);
+        session.setText(s_id);
+    }
+
+
 }

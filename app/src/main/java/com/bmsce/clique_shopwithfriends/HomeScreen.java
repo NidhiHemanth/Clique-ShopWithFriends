@@ -42,6 +42,11 @@ public class HomeScreen extends AppCompatActivity {
 
         bottomNavigationView.setSelectedItemId(R.id.rom);
         bottomNavigationView.setOnItemSelectedListener(item -> {
+            HomeFragment.mEditor.putString(getString(R.string.session_token), HomeFragment.token.getText().toString());
+            HomeFragment.mEditor.commit();
+            HomeFragment.mEditor.putString(getString(R.string.session_id), HomeFragment.session.getText().toString());
+            HomeFragment.mEditor.commit();
+
             switch (item.getItemId())
             {
                 case R.id.rom :

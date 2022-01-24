@@ -17,4 +17,6 @@
     <string name="rationale_video_app">This app needs access to your camera and mic so you can perform video calls</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
+    <string name="session_token">com.bmsce.clique_shopwithfriends.token</string>
+    <string name="session_id">com.bmsce.clique_shopwithfriends.id</string>
 </resources>
