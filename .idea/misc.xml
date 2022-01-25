@@ -6,7 +6,6 @@
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/aesthetic.xml" value="0.15925925925925927" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/layout_shape.xml" value="0.20185185185185187" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/drawable/rounded_corners_white.xml" value="0.20185185185185187" />
-        <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_dummy.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_edit_profile.xml" value="0.17391304347826086" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_home_screen.xml" value="0.203125" />
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/activity_room_code_screen.xml" value="0.23645833333333333" />
@@ -14,24 +13,31 @@
         <entry key="..\:/Users/megan/Desktop/Clique-ShopWithFriends/app/src/main/res/layout/fragment_profile.xml" value="0.184375" />
         <entry key="..\:/Users/megan/Desktop/CliqueShopwithFriends/app/src/main/res/layout/activity_main.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/drawable/aesthetic.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/circle_shape.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/drawable/ic_aspect_ratio_black_24dp.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_open_in_new_24.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_close_black_24dp.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/ic_close_white_24dp.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_pic1__1_.xml" value="0.15104166666666666" />
         <entry key="app/src/main/res/drawable/ic_sentiment_satisfied_alt_black_48dp.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/pfp.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/rounded_bg.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/drawable/rounded_bg_linear.xml" value="0.22407407407407406" />
         <entry key="app/src/main/res/drawable/skip.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/style_provider.xml" value="0.22407407407407406" />
+        <entry key="app/src/main/res/drawable/style_subscriber.xml" value="0.278125" />
         <entry key="app/src/main/res/layout-v31/activity_home_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_dummy.xml" value="0.26197916666666665" />
-        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.17028985507246377" />
-        <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_profile_dialog.xml" value="0.15897435897435896" />
         <entry key="app/src/main/res/layout/activity_profile_screen.xml" value="0.26197916666666665" />
-        <entry key="app/src/main/res/layout/activity_room_code_screen.xml" value="0.25407608695652173" />
+        <entry key="app/src/main/res/layout/activity_room_code_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_session.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_sessions_screen.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.26197916666666665" />
@@ -40,9 +46,11 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/fragment_session.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/layout_floating_widget.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/listview_layout.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/rotate_y.xml" value="0.19067028985507245" />
         <entry key="app/src/main/res/layout/slide_down.xml" value="0.1274062816616008" />
-        <entry key="app/src/main/res/layout/slider_item.xml" value="0.13489583333333333" />
+        <entry key="app/src/main/res/layout/slider_item.xml" value="0.22" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/menu/profile_menu.xml" value="0.26197916666666665" />
       </map>

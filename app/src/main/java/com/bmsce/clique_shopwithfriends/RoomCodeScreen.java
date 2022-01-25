@@ -1,7 +1,9 @@
 package com.bmsce.clique_shopwithfriends;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,6 +58,7 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         }
     }
 
+    AlertDialog.Builder builder;
     public static Uri uri;
     public static boolean isHost = false;
     public static String website = "https://www.amazon.in/";
@@ -185,6 +188,8 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_code_screen);
+
+        builder = new AlertDialog.Builder(this);
 
         //goes to openTokConfig.java and checks if there is a sessionID and token provided or not
         if(!OpenTokConfig.isValid()) {
@@ -353,33 +358,48 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
     }
 
     private void disconnectSession() {
-        if (session == null || !sessionConnected) {
-            return;
-        }
+        builder.setMessage("Do you want to exit this meet?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", (dialog, id) -> {
+                    if (session == null || !sessionConnected) {
+                        return;
+                    }
 
-        sessionConnected = false;
+                    sessionConnected = false;
 
-        String message = "";
-        for(int i = 0; i < subscribers.size(); i++) {
-            message += "Person " + i + " : " + subscribers.get(i).items.toString() + "\n";
-        }
+                    String message = "";
+                    for(int i = 0; i < subscribers.size(); i++) {
+                        message += "Person " + i + " : " + subscribers.get(i).items.toString() + "\n";
+                    }
 
-        if (subscribers.size() > 0) {
-            for (SubscriberContainer subscriberContainer : subscribers) {
-                if (subscriberContainer.subscriber != null) {
-                    session.unsubscribe(subscriberContainer.subscriber);
-                }
-            }
-        }
+                    if (subscribers.size() > 0) {
+                        for (SubscriberContainer subscriberContainer : subscribers) {
+                            if (subscriberContainer.subscriber != null) {
+                                session.unsubscribe(subscriberContainer.subscriber);
+                            }
+                        }
+                    }
 
-        if (publisher != null) {
-            session.unpublish(publisher);
-            publisher = null;
-        }
+                    if (publisher != null) {
+                        session.unpublish(publisher);
+                        publisher = null;
+                    }
 
-        sendMessage(message);
+                    sendMessage(message);
 
-        session.disconnect();
+                    session.disconnect();
+                })
+                .setNegativeButton("No", (dialog, id) -> {
+                    dialog.cancel();
+                });
+        AlertDialog alert = builder.create();
+        alert.setTitle("Attention User!");
+        alert.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        disconnectSession();
     }
 
     private void finishWithMessage(String message) {
