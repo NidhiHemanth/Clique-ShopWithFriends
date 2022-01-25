@@ -28,6 +28,8 @@ import com.opentok.android.PublisherKit;
 import com.opentok.android.Session;
 import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
+import com.opentok.android.SubscriberKit;
+
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import java.util.ArrayList;
@@ -97,43 +99,34 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             //For audio -> both host and audience must publish the stream
             //for screenshare, only host must publish and audience must only subscribe
 
-            if(isHost)
-            {
-                Log.d(TAG, "onConnected: hmm 5");
-                ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this, webViewContainer);
-                Log.d(TAG, "onConnected: hmm 6");
-                publisher = new Publisher.Builder(RoomCodeScreen.this)
-                        .capturer(screenSharingCapturer)
-                        .build();
-                Log.d(TAG, "onConnected: hmm 7");
-                publisher.setPublisherListener(publisherListener);
-                Log.d(TAG, "onConnected: hmm 8");
-                publisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
-                Log.d(TAG, "onConnected: hmm 9");
-                publisher.setAudioFallbackEnabled(false);
-                Log.d(TAG, "onConnected: hmm 10");
-                webViewContainer.setWebViewClient(new WebViewClient());
-                Log.d(TAG, "onConnected: hmm 1");
+            Log.d(TAG, "onConnected: test 5");
+            ScreenSharingCapturer screenSharingCapturer = new ScreenSharingCapturer(RoomCodeScreen.this, webViewContainer);
+            Log.d(TAG, "onConnected: test 6");
+            publisher = new Publisher.Builder(RoomCodeScreen.this)
+                    .capturer(screenSharingCapturer)
+                    .build();
+            Log.d(TAG, "onConnected: test 7");
+            publisher.setPublisherListener(publisherListener);
+            Log.d(TAG, "onConnected: test 8");
+            publisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
+            Log.d(TAG, "onConnected: test 9");
+            publisher.setAudioFallbackEnabled(false);
+            Log.d(TAG, "onConnected: test 10");
+
+               webViewContainer.setWebViewClient(new WebViewClient());
+                Log.d(TAG, "onConnected: test 1");
                 WebSettings webSettings = webViewContainer.getSettings();
-                Log.d(TAG, "onConnected: hmm 2");
-                webSettings.setJavaScriptEnabled(true);
-                Log.d(TAG, "onConnected: hmm 3");
+                Log.d(TAG, "onConnected: test 2");
                 webViewContainer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-                Log.d(TAG, "onConnected: hmm 4");
+                Log.d(TAG, "onConnected: test 3");
                 webViewContainer.loadUrl(website);
+                Log.d(TAG, "onConnected: test 4");
+                webSettings.setJavaScriptEnabled(true);
+                Log.d(TAG, "onConnected: test 12");
+            publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+            Log.d(TAG, "onConnected: test 13");
+            session.publish(publisher);
 
-                publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
-                Log.d(TAG, "onConnected: hmm 11");
-                session.publish(publisher);
-
-            }
-            else{
-                publisher = new Publisher.Builder(RoomCodeScreen.this).build();
-                publisher.setPublisherListener(publisherListener);
-                publisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
-
-                session.publish(publisher);
-            }
         }
 
         @Override
@@ -152,10 +145,14 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         public void onStreamReceived(Session session, Stream stream) {
             Log.d(TAG, "onStreamReceived: New stream " + stream.getStreamId() + " in session " + session.getSessionId());
 
-            Log.d(TAG, "onStreamReceived: hmm 15");
+            Log.d(TAG, "onStreamReceived: test 15");
+
             //subscribes to the streams already present in the sessions which it connects to
             final Subscriber subscriber = new Subscriber.Builder(RoomCodeScreen.this, stream).build();
+            subscriber.getRenderer().setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+            subscriber.setSubscriberListener(subscriberListener);
             session.subscribe(subscriber);
+            webViewContainer.addView(subscriber.getView());
             addSubscriber(subscriber);
         }
 
@@ -164,6 +161,23 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
             Log.d(TAG, "onStreamDropped: Stream " + stream.getStreamId() + " dropped from session " + session.getSessionId());
 
             removeSubscriberWithStream(stream);
+        }
+    };
+
+    SubscriberKit.SubscriberListener subscriberListener = new SubscriberKit.SubscriberListener() {
+        @Override
+        public void onConnected(SubscriberKit subscriberKit) {
+            Log.d(TAG, "onConnected: Subscriber connected. Stream: " + subscriberKit.getStream().getStreamId());
+        }
+
+        @Override
+        public void onDisconnected(SubscriberKit subscriberKit) {
+            Log.d(TAG, "onDisconnected: Subscriber disconnected. Stream: " + subscriberKit.getStream().getStreamId());
+        }
+
+        @Override
+        public void onError(SubscriberKit subscriberKit, OpentokError opentokError) {
+            finishWithMessage("SubscriberKit onError: " + opentokError.getMessage());
         }
     };
 
@@ -179,17 +193,15 @@ public class RoomCodeScreen extends AppCompatActivity implements EasyPermissions
         }
 
         final ToggleButton toggleAudio = findViewById(R.id.toggleAudio);
-        toggleAudio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (publisher == null) {
-                    return;
-                }
+        toggleAudio.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (publisher == null) {
+                return;
+            }
 
-                if (isChecked) {
-                    publisher.setPublishAudio(true);
-                } else {
-                    publisher.setPublishAudio(false);
-                }
+            if (isChecked) {
+                publisher.setPublishAudio(true);
+            } else {
+                publisher.setPublishAudio(false);
             }
         });
 
